@@ -22,3 +22,9 @@ Include the package in your hubot's external-scripts.json
 ```
 ["moustached-hubot"]
 ```
+
+### License
+
+See LICENSE file.
+
+Copyright (c) 2013 Travis CI GmbH
