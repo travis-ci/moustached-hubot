@@ -4,7 +4,8 @@ A collection of Hubot scripts from your friendly folks at Travis CI.
 
 Includes support for:
 
-- OpsGenie
+- [OpsGenie](http://opsgenie.com). Run "help genie" for a list of commands
+- [StatusPage.io](http://statuspage.io). Run "help status" for a list of commands
 
 ### Installation
 
