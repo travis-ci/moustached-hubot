@@ -1,0 +1,19 @@
+{
+  "name": "moustached-hubot",
+  "version": "0.0.1",
+  "description": "Moustached hubot scripts for increased ChatOps pleasure",
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/travis-ci/moustached-hubot.git"
+    }
+  ],
+  "main": "./index",
+  "directories": {
+  },
+  "dependencies": {
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
+}
