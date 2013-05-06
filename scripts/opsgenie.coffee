@@ -2,7 +2,7 @@
 #    Interaction with the OpsGenie API to list and acknowledge alerts, and to manipulate the on-call schedule.
 #
 # Configuration:
-#   OPSGENIE_CUSTOMER_KEY
+#   HUBOT_OPSGENIE_CUSTOMER_KEY
 #
 # Commands:
 #   hubot genie status - Lists open alerts

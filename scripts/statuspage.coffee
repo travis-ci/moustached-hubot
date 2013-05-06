@@ -2,8 +2,8 @@
 #   Interaction with the StatusPage.io API to open and update incidents, change component status.
 #
 # Configuration:
-#   STATUS_PAGE_ORGANIZATION
-#   STATUS_PAGE_TOKEN
+#   HUBOT_STATUS_PAGE_ORGANIZATION
+#   HUBOT_STATUS_PAGE_TOKEN
 #
 # Commands:
 #   hubot status? - Display an overall status of all components
