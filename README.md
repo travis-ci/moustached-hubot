@@ -23,6 +23,11 @@ Include the package in your hubot's external-scripts.json
 ["moustached-hubot"]
 ```
 
+### TODO
+
+- Support for on-call schedule manipulation (forwards, who's on call, etc.) #opsgenie
+- Support for scheduled maintenance #statuspage
+
 ### License
 
 See LICENSE file.
