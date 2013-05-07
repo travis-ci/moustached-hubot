@@ -64,10 +64,10 @@ module.exports = (robot) ->
             else
               msg.send "Updated incident \"#{unresolvedIncidents[0].name}\""
 
-  robot.respond /status open (investigating|identified|monitoring|resolved) ([^:]+): ?(.+)/i, (msg) ->
-    if msg.match.length == 4
+  robot.respond /status open (investigating|identified|monitoring|resolved) ([^:]+)(: ?(.+))/i, (msg) ->
+    if msg.match.length == 5
       name = msg.match[2]
-      message = msg.match[3]
+      message = msg.match[4]
     else
       name = msg.match[2]
 
