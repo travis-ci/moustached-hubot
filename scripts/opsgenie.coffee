@@ -23,7 +23,7 @@ module.exports = (robot) ->
     msg.message.user.opsGenieEmail = email
     msg.send "I'll remember your OpsGenie email as #{email}"
 
-  robot.respond /genie status\??$/i, (msg) ->
+  robot.respond /(genie|jeanie) status\??$/i, (msg) ->
     createdSince = new Date()
     createdSince.setTime(createdSince.getTime() - 48 * 60 * 60 * 1000)
     createdSince = parseInt(createdSince.getTime() * 1000 * 1000)
@@ -45,7 +45,7 @@ module.exports = (robot) ->
             alert = JSON.parse body
             msg.send "#{alert.tinyId}:  #{alert.message} (source: #{alert.source}, #{if alert.acknowledged then "acked by #{alert.owner}" else "unacked"})"
 
-  robot.respond /genie ack$/i, (msg) ->
+  robot.respond /(genie|jeanie) (ack|acknowledge|knowledge)$/i, (msg) ->
     msg.http("#{baseUrl}/alert").
         query({customerKey: customerKey, status: 'open'}).
         get() (err, res, body) ->
@@ -101,7 +101,7 @@ module.exports = (robot) ->
         msg.http("#{baseUrl}/alert/close").post(body) (err, res, body) ->
           msg.send "Closed: #{alert.message}"
 
-  robot.respond /genie close$/i, (msg) ->
+  robot.respond /(genie|jeanie) close$/i, (msg) ->
     msg.http("#{baseUrl}/alert").
         query({customerKey: customerKey, status: 'open'}).
         get() (err, res, body) ->
