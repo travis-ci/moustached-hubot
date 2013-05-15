@@ -62,8 +62,9 @@ module.exports = (robot) ->
               alertId: alert.id,
               user: opsGenieUser(msg)
             }
+            ackedAlert = alert
             msg.http("#{baseUrl}/alert/acknowledge").post(body) (err, res, body) ->
-              msg.send "Acknowledged: #{alert.message}"
+              msg.send "Acknowledged: #{ackedAlert.message}"
 
         msg.send "Acknowledged #{acked} unacked alerts"
 
@@ -112,13 +113,14 @@ module.exports = (robot) ->
       else
         acked = 0
         for alert in alerts
-            body = JSON.stringify {
-              customerKey: customerKey,
-              alertId: alert.id,
-              user: opsGenieUser(msg)
-            }
-            msg.http("#{baseUrl}/alert/close").post(body) (err, res, body) ->
-              msg.send "Closed: #{alert.message}"
+          body = JSON.stringify {
+            customerKey: customerKey,
+            alertId: alert.id,
+            user: opsGenieUser(msg)
+          }
+          closedAlert = alert
+          msg.http("#{baseUrl}/alert/close").post(body) (err, res, body) ->
+            msg.send "Closed: #{closedAlert.message}"
 
         msg.send "Closed #{alerts.length} open alerts"
 
