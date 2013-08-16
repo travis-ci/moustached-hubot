@@ -98,7 +98,7 @@ module.exports = (robot) ->
        else
          msg.send "Systems currently in a degraded state: #{("#{component.name} (#{component.status.replace(/_/g, " ")})" for component in components).join(", ")}"
 
-  robot.respond /status ((?!(incidents|open|update|resolve|create))([-.\w] ?)+)\?$/i, (msg) ->
+  robot.respond /status ((?!(incidents|open|update|resolve|create))(\S ?)+)\?$/i, (msg) ->
     msg.http("#{baseUrl}/components.json")
      .headers(authHeader)
      .get() (err, res, body) ->
@@ -110,7 +110,7 @@ module.exports = (robot) ->
        else
          msg.send "Status of #{msg.match[1]}: #{components[0].status.replace(/_/g, " ")}"
        
-  robot.respond /status (([-.\w] ?)+) (major( outage)?|degraded( performance)?|partial( outage)?|operational)/i, (msg) ->
+  robot.respond /status ((\S ?)+) (major( outage)?|degraded( performance)?|partial( outage)?|operational)/i, (msg) ->
     componentName = msg.match[1]
     status = msg.match[3]
     status = componentStatuses[status] || status
