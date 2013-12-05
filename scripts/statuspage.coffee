@@ -90,13 +90,15 @@ module.exports = (robot) ->
     msg.http("#{baseUrl}/components.json")
      .headers(authHeader)
      .get() (err, res, body) ->
-       response = JSON.parse body
-       components = response.filter (component) ->
+       components = JSON.parse body
+       broken_components = components.filter (component) ->
          component.status != 'operational'
-       if components.length == 0
+       if broken_components.length == 0
          msg.send "All systems operational!"
        else
-         msg.send "Systems currently in a degraded state: #{("#{component.name} (#{component.status.replace(/_/g, " ")})" for component in components).join(", ")}"
+         msg.send "There are currently #{broken_components.length} components in a degraded state"
+       msg.send ("#{component.name}: #{component.status.replace(/_/g, " ")}" for component in components).join("\n") + "\n"
+
 
   robot.respond /status ((?!(incidents|open|update|resolve|create))(\S ?)+)\?$/i, (msg) ->
     msg.http("#{baseUrl}/components.json")
