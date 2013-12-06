@@ -2,8 +2,8 @@
 #   Interaction with the StatusPage.io API to open and update incidents, change component status.
 #
 # Configuration:
-#   HUBOT_STATUS_PAGE_ORGANIZATION
-#   HUBOT_STATUS_PAGE_TOKEN
+#   HUBOT_STATUS_PAGE_PAGE_ID (see: http://doers.statuspage.io/api/authentication/)
+#   HUBOT_STATUS_PAGE_API_KEY (see: http://doers.statuspage.io/api/authentication/)
 #
 # Commands:
 #   hubot status? - Display an overall status of all components
@@ -16,8 +16,8 @@
 # Author:
 #   roidrage
 module.exports = (robot) ->
-  baseUrl = "https://api.statuspage.io/v0/organizations/#{process.env.HUBOT_STATUS_PAGE_ORGANIZATION}"
-  authHeader = Authorization: "OAuth #{process.env.HUBOT_STATUS_PAGE_TOKEN}"
+  baseUrl = "https://api.statuspage.io/v1/pages/#{process.env.HUBOT_STATUS_PAGE_PAGE_ID || process.env.HUBOT_STATUS_PAGE_ORGANIZATION}"
+  authHeader = Authorization: "OAuth #{process.env.HUBOT_STATUS_PAGE_API_KEY || process.env.HUBOT_STATUS_PAGE_TOKEN}"
   componentStatuses =
     degraded: 'degraded performance',
     major: 'major outage',
