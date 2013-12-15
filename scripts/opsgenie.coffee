@@ -65,7 +65,8 @@ module.exports = (robot) ->
                 user: opsGenieUser(msg)
               }
               msg.http("#{baseUrl}/alert/acknowledge").post(body) (err, res, body) ->
-                msg.send "Acknowledged: #{alert.message}"
+                if process.env.HUBOT_OPSGENIE_DONT_PRINT_ACKS != "true"
+                  msg.send "Acknowledged: #{alert.message}"
 
         msg.send "Acknowledged #{acked} unacked alerts"
 
