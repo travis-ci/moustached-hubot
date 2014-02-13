@@ -46,7 +46,7 @@ module.exports = (robot) ->
         msg.send "Error talking to StatusPage.io: #{response.error}"
       else
         unresolvedIncidents = response.filter (incident) ->
-          incident.status != "resolved" and incident.status != "postmortem" and incident.status != "completed"
+          !incident.backfilled and incident.status != "resolved" and incident.status != "postmortem" and incident.status != "completed" and incident.status != "scheduled"
         if unresolvedIncidents.length == 0
           msg.send "Sorry, there are no unresolved incidents."
         else
